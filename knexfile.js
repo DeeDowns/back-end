@@ -1,8 +1,6 @@
 // Update with your config settings.
 require("dotenv").config();
 
-const pgConnection = process.env.DATABASE_URL || "postgresql://postgres@localhost/auth" // <- this is needed for postgress integration with Heroku
-
 module.exports = {
   development: {
     client: "sqlite3",
@@ -39,11 +37,7 @@ module.exports = {
 
   production: {
     client: "pg",
-    connection: pgConnection,
-    pool: {
-      min: 2,
-      max: 10,
-    },
+    connection: process.env.DATABASE_URL,
     migrations: {
       directory: "./data/migrations",
     },
